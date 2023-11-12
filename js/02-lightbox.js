@@ -9,14 +9,20 @@ galleryEl.insertAdjacentHTML(
 
 function createGalleryItemsMarkup(items) {
   return items
-    .map(({ preview, original, description }) => {
-      return `
+    .map(
+      ({ preview, original, description }) => `
       <li class="gallery__item">
    <a class="gallery__link" href="${original}">
       <img class="gallery__image" src="${preview}" alt="${description}" />
    </a>
 </li>      
-    `;
-    })
+    `
+    )
     .join("");
+}
+galleryEl.addEventListener("click", onGalleryElClick);
+function onGalleryElClick(event) {
+  event.preventDefault();
+  if (event.currentTarget === event.target) return;
+  console.log("on t");
 }
