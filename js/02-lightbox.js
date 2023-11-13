@@ -1,7 +1,7 @@
 import { galleryItems } from "./gallery-items.js";
-// Change code below this line
 
 const galleryEl = document.querySelector(".gallery");
+
 galleryEl.insertAdjacentHTML(
   "beforeend",
   createGalleryItemsMarkup(galleryItems)
@@ -20,9 +20,13 @@ function createGalleryItemsMarkup(items) {
     )
     .join("");
 }
+
 galleryEl.addEventListener("click", onGalleryElClick);
 function onGalleryElClick(event) {
   event.preventDefault();
   if (event.currentTarget === event.target) return;
-  console.log("on t");
 }
+const lightbox = new SimpleLightbox(".gallery a", {
+  captionsData: "alt",
+  captionDelay: 250,
+});

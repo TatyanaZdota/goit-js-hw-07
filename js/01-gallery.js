@@ -33,16 +33,18 @@ function onGalleryElClick(event) {
   if (event.currentTarget === event.target) return;
   const modalImg = event.target.dataset.source;
 
-  const instance = basicLightbox.create(`
-   <img src="${modalImg}"  width="800" height="600">
-  `);
+  const instance = basicLightbox.create(
+    `<img src="${modalImg}"  width="800" height="600">`,
+    {
+      onClose: () => document.removeEventListener("keydown", onDocumentKeydown),
+      onShow: () => document.addEventListener("keydown", onDocumentKeydown),
+    }
+  );
   instance.show();
 
-  document.addEventListener("keydown", onDocumentKeydown);
   function onDocumentKeydown(event) {
     if (event.code === "Escape") {
       instance.close();
-      document.removeEventListener("keydown", onDocumentKeydown);
     }
   }
 }
