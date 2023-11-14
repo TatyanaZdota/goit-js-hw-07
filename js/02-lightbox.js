@@ -21,11 +21,6 @@ function createGalleryItemsMarkup(items) {
     .join("");
 }
 
-galleryEl.addEventListener("click", onGalleryElClick);
-function onGalleryElClick(event) {
-  event.preventDefault();
-  if (event.currentTarget === event.target) return;
-}
 const lightbox = new SimpleLightbox(".gallery a", {
   captionsData: "alt",
   captionDelay: 250,
